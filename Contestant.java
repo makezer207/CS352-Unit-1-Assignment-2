@@ -2,7 +2,7 @@
  * This class extends Person while adding attributes and methods
  * related to recording performance in the specified contest. 
  *     
- * Author: Name and Student ID
+ * Author: Mitchell Kezer Student ID: 1486912
  * Last updated: 
  */
 public class Contestant extends Person {
@@ -11,7 +11,9 @@ public class Contestant extends Person {
 	// Start simple to get your program running, then add attributes and methods as you need them
 	
 	// Step 1 Add at least one constructor so the driver will compile and run
-	
+	public Contestant(String name, int age) { // Call the constructor of the superclass (Person) to initialize name and age
+		super(name, age);
+	}
 	
 	// Step 5 Add attributes and methods to assist with recording game statistics
 }
