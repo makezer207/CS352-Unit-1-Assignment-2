@@ -11,7 +11,9 @@ public class Contestant extends Person {
 	// Start simple to get your program running, then add attributes and methods as you need them
 	
 	// Step 1 Add at least one constructor so the driver will compile and run
-	public Contestant(String name, int age) { // Call the constructor of the superclass (Person) to initialize name and age
+
+	// The code below calls the constructor of the superclass (Person) to initialize name and age
+	public Contestant(String name, int age) { 
 		super(name, age);
 	}
 	
