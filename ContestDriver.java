@@ -17,9 +17,11 @@ public class ContestDriver {
 
 		// Step 0 - Uncomment the two lines below, then add code to the Contestant class to make this compile
 		// This creates a single Contestant and prints its attributes, just to show it can be done
-		Contestant ac = new Contestant("Billy",22);
+		
+		/* Contestant ac = new Contestant("Billy",22);
 		System.out.println(ac);
 		System.out.println();
+		*/
 		
 		// Step 2
 		// Create multiple Contestants and add them to an ArrayList
@@ -32,11 +34,12 @@ public class ContestDriver {
 		number of Contestants created by changing the value of `n`. Each has an age of 20-29. Also will output 
 		how many Contestants are in the ArrayList.
 		*/
-		int n = 5;
+		
+		int n = 8;
 		ArrayList<Contestant> contestants = new ArrayList<>(n);
 
 		for (int i = 0; i < n; i++) {
-			Contestant c = new Contestant("Contestant" + (i + 1), 20 + i);
+			Contestant c = new Contestant("Contestant " + (i + 1), 20 + i);
 			contestants.add(c);
 		}
 
@@ -81,6 +84,7 @@ public class ContestDriver {
 		or in this case just one.
 		*/
 
+		/*
 		ArrayList<Contestant> initialPosition = new ArrayList<>(contestants);
 
 		for (Contestant contestant : initialPosition) {
@@ -104,12 +108,54 @@ public class ContestDriver {
 			Contestant contestant = contestants.get(i);
 			System.out.println(contestant.getName() + " is in position " + (i));
 		}
+		*/
 
 		// Steps 5 - 7
 		// Repeat Steps 3 and 4 many times to gather data.
 		// You will need to modify the Contestant class so each Contestant
 		// will keep track of its individual statistics. Be smart about how you record its
 		// position at the end of each round.
+		
+		/*
+		The code below simulates multiple rounds of the game, where each Contestant's position is recorded 
+		after each round.
+		*/
+
+		int rounds = 12;
+		for (int round = 1; round <= rounds; round++) {
+			ArrayList<Contestant> roundStartOrder = new ArrayList<>(contestants);
+
+			for (Contestant contestant : roundStartOrder) {
+				boolean correct = flipCoin();
+
+				contestants.remove(contestant);
+
+				if (correct) {
+					contestants.add(0, contestant);
+				}
+				else {
+					contestants.add(contestant); 
+				}
+			}
+		
+		for (int position = 0; position < contestants.size(); position++) {
+			contestants.get(position).recordPosition(position);
+		}
+		}
+
+		/*
+		The code below prints the average position of each Contestant after the specified number of rounds. It 
+		loops through the ArrayList of Contestants and calls the getAveragePosition() method for each Contestant 
+		to calculate and print their average position in the game. The output is formatted to show the Contestant's 
+		name and their average position rounded to two decimal places for the sake of simplicity.
+		*/
+		System.out.println("Average position of each Contestant after " + rounds + " rounds:");
+		System.out.println();
+
+		for (Contestant contestant : contestants) {
+			System.out.printf("%s: %.2f%n", contestant.getName(), contestant.getAveragePosition());
+		}
+		
 		System.out.println();
 		System.out.println("Finished!");
 	}
@@ -124,5 +170,4 @@ public class ContestDriver {
 	private static boolean flipCoin() {
 		return random.nextBoolean();
 	}
-
 }

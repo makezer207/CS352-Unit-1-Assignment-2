@@ -18,4 +18,25 @@ public class Contestant extends Person {
 	}
 	
 	// Step 5 Add attributes and methods to assist with recording game statistics
+
+	/*
+	The code below adds attributes and methods to record the position of the Contestant in the game. The 
+	recordPosition method is used to update the total position and number of positions recorded, while the 
+	getAveragePosition method calculates and returns the average position of the Contestant.
+	*/
+	
+	private long contestantPosition;
+	private int numberOfPosition;
+
+	public void recordPosition(int position) {
+		contestantPosition += position;
+		numberOfPosition++;
+	}
+
+	public double getAveragePosition() {
+		if (numberOfPosition == 0) {
+			return 0.0;
+		}
+		return (double) contestantPosition / numberOfPosition;
+	}
 }
