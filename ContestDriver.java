@@ -31,11 +31,11 @@ public class ContestDriver {
 		/*
 		The code below creates an ArrayList of Contestants and adds 'n' Contestants to it, starting from the 
 		1 position with "Contestant1" and ends with "Contestant'n'". You will easily be able to change the 
-		number of Contestants created by changing the value of `n`. Each has an age of 20-29. Also will output 
+		number of Contestants created by changing the value of `n`. Also will output 
 		how many Contestants are in the ArrayList.
 		*/
 		
-		int n = 8;
+		int n = 43;
 		ArrayList<Contestant> contestants = new ArrayList<>(n);
 
 		for (int i = 0; i < n; i++) {
@@ -121,7 +121,10 @@ public class ContestDriver {
 		after each round.
 		*/
 
-		int rounds = 12;
+		int rounds = 10000;
+
+		long startTime = System.nanoTime();
+
 		for (int round = 1; round <= rounds; round++) {
 			ArrayList<Contestant> roundStartOrder = new ArrayList<>(contestants);
 
@@ -142,6 +145,19 @@ public class ContestDriver {
 			contestants.get(position).recordPosition(position);
 		}
 		}
+
+		/*
+		The code below measures the time taken to simulate the specified number of rounds. It uses System.nanoTime()
+		to record the start and end time of the simulation, then calculates the duration in nanoseconds, then converts 
+		it to milliseconds for easier readability. 
+		*/
+
+		long endTime = System.nanoTime();
+		long duration = endTime - startTime;
+
+		System.out.printf("Time taken to simulate %d rounds: %d ns (%.2f ms)%n" , rounds, duration, duration / 1_000_000.0);
+		System.out.println();
+		System.out.println();
 
 		/*
 		The code below prints the average position of each Contestant after the specified number of rounds. It 
