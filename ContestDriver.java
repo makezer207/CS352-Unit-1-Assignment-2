@@ -35,7 +35,7 @@ public class ContestDriver {
 		how many Contestants are in the ArrayList.
 		*/
 		
-		int n = 43;
+		int n = 45000;
 		ArrayList<Contestant> contestants = new ArrayList<>(n);
 
 		for (int i = 0; i < n; i++) {
@@ -164,14 +164,15 @@ public class ContestDriver {
 		loops through the ArrayList of Contestants and calls the getAveragePosition() method for each Contestant 
 		to calculate and print their average position in the game. The output is formatted to show the Contestant's 
 		name and their average position rounded to two decimal places for the sake of simplicity.
-		*/
+		
 		System.out.println("Average position of each Contestant after " + rounds + " rounds:");
 		System.out.println();
 
 		for (Contestant contestant : contestants) {
 			System.out.printf("%s: %.2f%n", contestant.getName(), contestant.getAveragePosition());
 		}
-		
+		*/
+
 		System.out.println();
 		System.out.println("Finished!");
 	}
