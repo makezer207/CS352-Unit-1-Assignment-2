@@ -1,10 +1,11 @@
 /*
 Mitchell Kezer
 Student ID: 1486912
-October 26, 2026
+November 1, 2026
 */
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random; 
 
 public class ContestDriver {
@@ -28,13 +29,17 @@ public class ContestDriver {
 		// Do something simple to get started, but remember, you will need
 		// to generate up to 1,000,000 Contestants	
 		
+
 		/*
 		The code below creates an ArrayList of Contestants and adds 'n' Contestants to it, starting from the 
 		1 position with "Contestant1" and ends with "Contestant'n'". You will easily be able to change the 
 		number of Contestants created by changing the value of `n`. Also will output 
 		how many Contestants are in the ArrayList.
 		*/
-		
+
+		/* 
+		This is the ArrayList from Assignment 1
+
 		int n = 45000;
 		ArrayList<Contestant> contestants = new ArrayList<>(n);
 
@@ -45,6 +50,25 @@ public class ContestDriver {
 
 		System.out.println("Contestants in the Array List: " + contestants.size());
 		System.out.println();
+		*/ 
+		
+
+
+		/*
+		The code below creates a LinkedList of Contestants and adds 'n' Contestants to it, starting from the 1 position 
+		with "Contestant1" and ends with "Contestant'n'". You will easily be able to change the number of Contestants 
+		created by changing the value of `n`.
+		*/
+
+		int n = 43;
+		LinkedList<Contestant> contestants = new LinkedList<>();
+
+		for (int i = 0; i < n; i++) {
+			Contestant c = new Contestant("Contestant " + (i + 1), 20 + i);
+			contestants.add(c);
+		}
+
+
 
 		// Steps 3 and 4
 		// Play a round
@@ -119,9 +143,9 @@ public class ContestDriver {
 		/*
 		The code below simulates multiple rounds of the game, where each Contestant's position is recorded 
 		after each round.
-		*/
+		This is code from Assignment 1.
 
-		int rounds = 10000;
+		int rounds = 100000;
 
 		long startTime = System.nanoTime();
 
@@ -145,6 +169,42 @@ public class ContestDriver {
 			contestants.get(position).recordPosition(position);
 		}
 		}
+		*/
+
+
+		/*
+		The code below simulates multiple rounds of the game, where each Contestant's position is recorded after each round. 
+		This is code from Assignment 2, which uses a LinkedList instead of an ArrayList for better performance when 
+		adding/removing elements from the list.
+		*/
+
+		int rounds = 100000;
+
+		long startTime = System.nanoTime();
+
+		for (int round = 1; round <= rounds; round++) {
+			LinkedList<Contestant> roundStartOrder = new LinkedList<>(contestants);
+
+			for (Contestant contestant : roundStartOrder) {
+				boolean correct = flipCoin();
+
+				contestants.remove(contestant);
+
+				if (correct) {
+					contestants.addFirst(contestant);
+				}
+				else {
+					contestants.addLast(contestant); 
+				}
+			}
+
+			int position = 0;
+			for (Contestant contestant : contestants) {
+				contestant.recordPosition(position);
+				position++;
+			}
+		}
+
 
 		/*
 		The code below measures the time taken to simulate the specified number of rounds. It uses System.nanoTime()
@@ -155,9 +215,7 @@ public class ContestDriver {
 		long endTime = System.nanoTime();
 		long duration = endTime - startTime;
 
-		System.out.printf("Time taken to simulate %d rounds: %d ns (%.2f ms)%n" , rounds, duration, duration / 1_000_000.0);
-		System.out.println();
-		System.out.println();
+		System.out.printf("Time taken to simulate %d rounds: %d ns (%.2f ms)%n", rounds, duration, duration / 1_000_000.0);
 
 		/*
 		The code below prints the average position of each Contestant after the specified number of rounds. It 
